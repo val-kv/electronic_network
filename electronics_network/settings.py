@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-!8$3v2w+kum^1mhwu&^(22)m-t1%!z+y5ia(m=p$xptl+da@fn
 DEBUG = True
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL = 'network.CustomUser'
 
 
 # Application definition
@@ -39,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'network.apps.NetworkConfig',
-    'rest_framework'
+    'djoser',
+    'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -132,7 +135,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ]
+ 'DEFAULT_PERMISSION_CLASSES': [
+    'rest_framework.permissions.IsAuthenticated',
+ ],
+ 'DEFAULT_AUTHENTICATION_CLASSES': [
+    'rest_framework_simplejwt.authentication.JWTAuthentication',
+ ],
 }
