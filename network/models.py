@@ -3,6 +3,11 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
+    """
+        Пользовательская модель, которая наследуется от AbstractUser Django.
+
+        Эта модель может быть использована для добавления пользовательских полей или поведения к модели пользователя по умолчанию.
+        """
     pass
 
     class Meta(AbstractUser.Meta):
@@ -10,6 +15,13 @@ class CustomUser(AbstractUser):
 
 
 class Supplier(models.Model):
+    """
+        Представляет поставщика в сети.
+
+        Атрибуты:
+            name (str): Имя поставщика.
+            debt (Decimal): Долг поставщика, с максимальной длиной 10 цифр и 2 десятичными знаками.
+        """
     name = models.CharField(max_length=255)
     debt = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
@@ -18,6 +30,23 @@ class Supplier(models.Model):
 
 
 class NetworkNode(models.Model):
+    """
+        Представляет узел в сети.
+
+        Атрибуты:
+            LEVELS (кортеж): Кортеж кортежей, содержащий различные уровни сети.
+            name (строка): Имя узла сети.
+            email (строка): Электронный адрес узла сети.
+            country (строка): Страна, где находится узел сети.
+            city (строка): Город, где находится узел сети.
+            street (строка): Адрес узла сети.
+            house_number (строка): Номер дома узла сети.
+            products (список): Список продуктов, связанных с узлом сети.
+            supplier (Supplier): Поставщик, связанный с узлом сети.
+            debt_to_supplier (Decimal): Долг перед поставщиком.
+            creation_time (DateTime): Время создания узла сети.
+            level (целое число): Уровень узла сети.
+        """
     LEVELS = (
         (0, 'Factory'),
         (1, 'Retail Network'),
