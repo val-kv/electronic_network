@@ -3,8 +3,8 @@ from .models import Supplier, NetworkNode, CustomUser
 
 
 class NetworkNodeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'city', 'supplier', 'debt_to_supplier')
-    list_filter = ('city',)
+    list_display = ('name', 'supplier', 'debt_to_supplier')
+    list_filter = ('name',)
     actions = ['clear_debt']
 
     def clear_debt(self, request, queryset):
